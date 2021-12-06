@@ -11,8 +11,7 @@ const CreateNote = ({addNote, students}) => {
         e.preventDefault()
         const noteObj = { 
             title: title,  
-            description: description,
-            student_id: student_id
+            description: description
         }
         fetch("http://localhost:9292/notes", {
             method: "POST",

@@ -4,6 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import CreateStudent from "./components/CreateStudent";
 import CreateNote from "./components/CreateNote";
+import StudentList from "./components/StudentList";
+import NoteList from "./components/NoteList";
+
 
 function App() {
   const [students, setStudents] = useState([])
@@ -13,7 +16,7 @@ function App() {
     fetch("http://localhost:9292/students")
       .then((r) => r.json())
       .then(data => {
-        console.log(data)
+        console.log("students", data)
         setStudents(data)
       });
   }, [])
@@ -44,7 +47,7 @@ function App() {
 
   function deleteNote(id) {
     const updatedNotes = notes.filter(note => note.id !== id)
-    setItems(updatedNotes)
+    setNotes(updatedNotes)
   }
 
   return (
