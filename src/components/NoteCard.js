@@ -14,7 +14,7 @@ const NoteCard = ({title, description, deleteNote, id}) => {
     }
     
     return (
-        <div>
+        <div className="card">
         Title: {title}
         <br></br>
         description: {description}

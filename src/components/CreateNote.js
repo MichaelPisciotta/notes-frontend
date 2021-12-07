@@ -29,7 +29,7 @@ const CreateNote = ({addNote, students}) => {
             
     };
 
-    const studentOptions = students.map(student => <option>{student.name}</option>)
+const pickStudent = students.map(student => <option key={student.id}>{student.name}</option>)
 
 
     return (
@@ -43,9 +43,9 @@ const CreateNote = ({addNote, students}) => {
             <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
             
 
-            <select name="student" class="form-select" aria-label="Default select example">
+            <select name="student" className="form-select" aria-label="Default select example">
                 <option selected>Select Student</option>
-                <option value={studentOptions}></option>
+                {pickStudent}
             </select>
 
 

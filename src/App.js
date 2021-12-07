@@ -64,12 +64,12 @@ function App() {
                     <StudentList students={students} deleteStudent={deleteStudent} />
                 </Route>
 
-                <Route path="/students/new">
+                <Route exact path="/students/new">
                     <CreateStudent addStudent={addStudent}/>
                 </Route>
 
                 <Route exact path="/notes/new">
-                    <CreateNote addNote={addNote} students={students} />
+                    <CreateNote addNote={addNote} students={students}  />
                 </Route>             
                 
                 <Route path="*">
