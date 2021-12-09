@@ -12,7 +12,7 @@ function handleDelete() {
        return r.json()})
       .then(data => console.log(data));
        deleteStudent(id)
-}
+};
  
     return (
         <div className="card">

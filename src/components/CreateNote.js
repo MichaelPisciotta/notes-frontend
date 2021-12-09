@@ -4,6 +4,8 @@ const CreateNote = ({addNote, students}) => {
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const [choice, setChoice] = useState("")
+
 
 
      
@@ -11,7 +13,8 @@ const CreateNote = ({addNote, students}) => {
         e.preventDefault()
         const noteObj = { 
             title: title,  
-            description: description
+            description: description,
+            student_id: choice
         }
         fetch("http://localhost:9292/notes", {
             method: "POST",
@@ -29,7 +32,13 @@ const CreateNote = ({addNote, students}) => {
             
     };
 
-const pickStudent = students.map(student => <option key={student.id}>{student.name}</option>)
+const handleChoice = (e) => {
+
+setChoice(e.target.value)
+} 
+
+const pickStudent = students.map(student => <option value={student.id}  key={student.id} data-id={student.id}>{student.name}</option>)
+
 
 
     return (
@@ -43,7 +52,7 @@ const pickStudent = students.map(student => <option key={student.id}>{student.na
             <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
             
 
-            <select name="student" className="form-select" aria-label="Default select example">
+            <select name="student" className="form-select" aria-label="Default select example" onChange={handleChoice}>
                 <option selected>Select Student</option>
                 {pickStudent}
             </select>
