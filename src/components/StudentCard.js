@@ -26,7 +26,6 @@ function handleDelete() {
            <br></br>
            <br></br>
            <button onClick={handleDelete}>Delete</button>
-
         </div>
     )
 }

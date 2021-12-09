@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 const CreateStudent = ({addStudent}) => {
-
+    
+    let history = useHistory();
     const [name, setName] = useState("")
+    const [loading, setLoading] = useState(false)
 
     
     function handleSubmit(e) {
@@ -10,6 +13,7 @@ const CreateStudent = ({addStudent}) => {
         const studentObj = { 
             name: name
         }
+        setLoading(true)
         fetch("http://localhost:9292/students", {
             method: "POST",
             headers: {
@@ -19,11 +23,18 @@ const CreateStudent = ({addStudent}) => {
         })
             .then(r => r.json())
             .then(data => {
+                //debugger;
                 addStudent(data)
                 setName("")
-            })
-            
+                setTimeout(() => {
+                    setLoading(false)
+                    history.push("/students");      
+
+                } ,1000)
+            })   
+
     };
+
     
     return (
         <div>
@@ -33,7 +44,7 @@ const CreateStudent = ({addStudent}) => {
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
 
-                <button type="submit">Create New Student</button>
+                <button type="submit">{loading ? "loading..." : "Create New Student"}</button>
             </form>
         </div>
     )

@@ -1,14 +1,16 @@
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom';
+
 
 const CreateNote = ({addNote, students}) => {
-
+    
+    let history = useHistory();
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [choice, setChoice] = useState("")
+    const [loading, setLoading] = useState(false)
 
 
-
-     
     function handleSubmit(e) {
         e.preventDefault()
         const noteObj = { 
@@ -16,6 +18,7 @@ const CreateNote = ({addNote, students}) => {
             description: description,
             student_id: choice
         }
+        setLoading(true)
         fetch("http://localhost:9292/notes", {
             method: "POST",
             headers: {
@@ -29,17 +32,20 @@ const CreateNote = ({addNote, students}) => {
                 setTitle("")
                 setDescription("")
                 setChoice("")
+                setTimeout(() => {
+                    setLoading(false)
+                    history.push("/notes");      
+
+                } ,1000)
             })
             
     };
 
 const handleChoice = (e) => {
-
 setChoice(e.target.value)
 } 
 
 const pickStudent = students.map(student => <option value={student.id}  key={student.id} data-id={student.id}>{student.name}</option>)
-
 
 
     return (
@@ -59,7 +65,7 @@ const pickStudent = students.map(student => <option value={student.id}  key={stu
             </select>
 
 
-        <button type="submit">Create New Note</button>
+        <button type="submit">{loading ? "loading..." : "Create New Note"}</button>
     </form>
     )
 }
