@@ -28,6 +28,7 @@ const CreateNote = ({addNote, students}) => {
                 addNote(data)
                 setTitle("")
                 setDescription("")
+                setChoice("")
             })
             
     };
