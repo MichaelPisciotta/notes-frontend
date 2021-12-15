@@ -1,7 +1,7 @@
 import React from 'react'
 
 const StudentCard = ({name, student, deleteStudent, id}) => {
-console.log(student)
+console.log("student", student)
 
 function handleDelete() {
     fetch(`http://localhost:9292/students/${id}`, {
@@ -16,6 +16,9 @@ function handleDelete() {
  
     return (
         <div className="card">
+        
+        <div className="container">
+
            Student: {name} 
            <br></br>
            <br></br>
@@ -26,6 +29,8 @@ function handleDelete() {
            <br></br>
            <br></br>
            <button onClick={handleDelete}>Delete</button>
+           </div>
+
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom';
 
 
-const CreateNote = ({addNote, students}) => {
+const CreateNote = ({addNote, students, updateStudentWithNote}) => {
     
     let history = useHistory();
     const [title, setTitle] = useState("")
@@ -29,17 +29,21 @@ const CreateNote = ({addNote, students}) => {
             .then(r => r.json())
             .then(data =>{
                 addNote(data)
+                updateStudentWithNote(data)
                 setTitle("")
                 setDescription("")
                 setChoice("")
-                setTimeout(() => {
-                    setLoading(false)
-                    history.push("/notes");      
-
-                } ,1000)
+                setLoading(false)
+                history.push("/notes");
+                // setTimeout(() => {} ,1000)
             })
             
     };
+
+    
+
+
+
 
 const handleChoice = (e) => {
 setChoice(e.target.value)

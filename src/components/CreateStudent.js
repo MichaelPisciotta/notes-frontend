@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
-const CreateStudent = ({addStudent}) => {
+const CreateStudent = ({addStudent, notes}) => {
     
     let history = useHistory();
     const [name, setName] = useState("")
@@ -26,11 +26,9 @@ const CreateStudent = ({addStudent}) => {
                 //debugger;
                 addStudent(data)
                 setName("")
-                setTimeout(() => {
-                    setLoading(false)
-                    history.push("/students");      
-
-                } ,1000)
+                setLoading(false)
+                history.push("/students");  
+                // setTimeout(() => {    } ,1000)
             })   
 
     };

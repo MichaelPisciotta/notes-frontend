@@ -37,8 +37,21 @@ function App() {
   function addNote(newNote){
     const updatedNotes = [...notes, newNote]
     setNotes(updatedNotes)
-
   }
+
+  function updateStudentWithNote(newNote){
+    const updatedStudents = students.map(student => {
+      if(student.id === newNote.student_id){
+          const newNotes = [...student.notes, newNote]
+          return {...student, notes: newNotes}
+      }else{
+        return student
+      }
+    }) 
+    setStudents(updatedStudents)
+  }
+
+
 
   function deleteStudent(id) {
     const updatedStudents = students.filter(student => student.id !== id)
@@ -65,11 +78,11 @@ function App() {
                 </Route>
 
                 <Route exact path="/students/new">
-                    <CreateStudent addStudent={addStudent}/>
+                    <CreateStudent addStudent={addStudent} notes={notes}/>
                 </Route>
 
                 <Route exact path="/notes/new">
-                    <CreateNote addNote={addNote} students={students}  />
+                    <CreateNote addNote={addNote} students={students} updateStudentWithNote={updateStudentWithNote} />
                 </Route>             
                 
                 <Route path="*">

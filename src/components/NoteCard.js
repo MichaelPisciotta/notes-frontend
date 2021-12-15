@@ -15,11 +15,13 @@ const NoteCard = ({title, description, deleteNote, id}) => {
     
     return (
         <div className="card">
+        <div className="container">
         Title: {title}
         <br></br>
         description: {description}
         <br></br>
         <button onClick={handleDelete}>Delete</button>
+        </div>
         </div>
     )
 }
