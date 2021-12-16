@@ -6,6 +6,7 @@ import CreateStudent from "./components/CreateStudent";
 import CreateNote from "./components/CreateNote";
 import StudentList from "./components/StudentList";
 import NoteList from "./components/NoteList";
+import SearchStudent from "./components/SearchStudent";
 
 
 function App() {
@@ -79,6 +80,10 @@ function App() {
 
                 <Route exact path="/students/new">
                     <CreateStudent addStudent={addStudent} notes={notes}/>
+                </Route>
+
+                <Route exact path="/students/search">
+                    <SearchStudent students={students} />
                 </Route>
 
                 <Route exact path="/notes/new">

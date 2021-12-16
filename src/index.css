@@ -77,6 +77,16 @@ img{
   
   /* Add some padding inside the card container */
   .container {
+    text-align: center;
     padding: 2px 16px;
   }
 
+  .photo{
+    width: 300px;
+    height: 300px;
+  }
+
+  .notes{
+    text-align: center;
+  }
+ 

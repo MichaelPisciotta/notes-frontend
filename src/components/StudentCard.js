@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StudentCard = ({name, student, deleteStudent, id}) => {
+const StudentCard = ({name, student, deleteStudent, id, image}) => {
 console.log("student", student)
 
 function handleDelete() {
@@ -18,14 +18,12 @@ function handleDelete() {
         <div className="card">
         
         <div className="container">
-
-           Student: {name} 
+        <img src={image} className="photo" alt="student_image"/> 
+           <br></br>
+            {name} 
            <br></br>
            <br></br>
-           Notes:
-           <br></br>
-           <br></br>
-           {student.notes.map((note) => ` Title: ${note.title} - Description: ${note.description}`)}
+           <div className="notes">{student.notes.map((note) => ` Title: ${note.title} - Description: ${note.description}`)}</div>
            <br></br>
            <br></br>
            <button onClick={handleDelete}>Delete</button>

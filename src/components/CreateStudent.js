@@ -5,13 +5,16 @@ const CreateStudent = ({addStudent, notes}) => {
     
     let history = useHistory();
     const [name, setName] = useState("")
+    const [image, setImage] = useState("")
+
     const [loading, setLoading] = useState(false)
 
     
     function handleSubmit(e) {
         e.preventDefault()
         const studentObj = { 
-            name: name
+            name: name,
+            image_url: image
         }
         setLoading(true)
         fetch("http://localhost:9292/students", {
@@ -26,9 +29,11 @@ const CreateStudent = ({addStudent, notes}) => {
                 //debugger;
                 addStudent(data)
                 setName("")
-                setLoading(false)
-                history.push("/students");  
-                // setTimeout(() => {    } ,1000)
+                setTimeout(() => {
+                    setLoading(false)
+                    history.push("/students");      
+
+                } ,1000)
             })   
 
     };
@@ -41,6 +46,9 @@ const CreateStudent = ({addStudent, notes}) => {
 
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+
+                <label htmlFor="image">Image:</label>
+                <input type="text" id="image" value={image} onChange={(e) => setImage(e.target.value)} />
 
                 <button type="submit">{loading ? "loading..." : "Create New Student"}</button>
             </form>
